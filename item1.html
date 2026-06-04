@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conta 2011 - BOT - Blox Store</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="small-header"murderer vs sheriffs >
+    <h1>Blox Store</h1>
+</header>
+
+<div class="product-page">
+
+    <div class="product-left">
+        <img src="https://cdn.discordapp.com/attachments/1494063969030246481/1511279378548396042/file_000000002fd471f49ed6352c7a4bea92.png?ex=6a1fe01a&is=6a1e8e9a&hm=a099e9118d299062c7b1ebf9cdf374c704917a1b325f750e2c50fab50e3936c9&" class="product-img">
+    </div>
+
+    <div class="product-right">
+
+        <h2>Roblox Conta 2011 - BOT </h2>
+
+        <p class="desc">
+            Conta bot de 2011, seguida pelo builderman.
+            Ideal para quem quer ter conta rara ou começar já forte.
+        </p>
+
+        <p class="price">R̶$̶ ̶1̶2̶0̶ ̶ ➜ R$ 𝟴𝟴,𝟬𝟬</p>
+
+        <p id="stock">Em estoque: 3</p>
+
+        <button class="buy-btn" id="buyBtn" onclick="buy()">Comprar agora</button>
+
+        <a href="index.html" class="back" onclick="goBack(event)">Voltar</a>
+
+    </div>
+
+</div>
+
+<!-- POPUP -->
+<div id="modal" class="modal">
+
+    <div class="modal-box">
+
+        <h2>Pedido em andamento</h2>
+
+        <p>Para prosseguir com a compra entre em contacto.
+        
+        Você tem 1 minuto caso queira cancelar ou o pedido será confirmado automaticamente.</p>
+
+        <p id="timer">Tempo restante: 60s</p>
+
+        <p>
+            WhatsApp:
+            <a href="https://wa.me/351928046558" target="_blank">
+                Abrir conversa
+            </a>
+        </p>
+
+        <p>
+            Discord:
+            <a href="https://discord.gg/hv7w2X6fGk" target="_blank">
+                Abrir ticket
+            </a>
+        </p>
+
+        <button onclick="cancelPurchase()" class="close-btn">
+            Cancelar pedido
+        </button>
+
+    </div>
+
+</div>
+
+<!-- 🔊 SOM -->
+<audio id="clickSound" src="https://www.myinstants.com/media/sounds/click-sound.mp3" preload="auto"></audio>
+
+<script>
+let stock = 3;
+let timer;
+let timeLeft = 60;
+
+/* 🔊 SOM */
+function playClick() {
+    const sound = document.getElementById("clickSound");
+    sound.currentTime = 0;
+    sound.play();
+}
+
+function buy() {
+    playClick();
+
+    const btn = document.getElementById("buyBtn");
+
+    if(stock <= 0) {
+        btn.innerText = "Esgotado";
+        btn.style.background = "#555";
+        return;
+    }
+
+    btn.innerText = "Processando...";
+    btn.disabled = true;
+
+    setTimeout(() => {
+        btn.innerText = "Comprar agora";
+        btn.disabled = false;
+
+        openModal();
+        startTimer();
+    }, 800);
+}
+
+/* ⏱️ TIMER DE 1 MINUTO */
+function startTimer() {
+    timeLeft = 60;
+    document.getElementById("timer").innerText = "Tempo restante: 60s";
+
+    timer = setInterval(() => {
+        timeLeft--;
+
+        document.getElementById("timer").innerText =
+            "Tempo restante: " + timeLeft + "s";
+
+        if(timeLeft <= 0) {
+            clearInterval(timer);
+            confirmPurchase();
+        }
+
+    }, 1000);
+}
+
+/* ✔️ COMPRA CONFIRMADA AUTOMATICAMENTE */
+function confirmPurchase() {
+    clearInterval(timer);
+
+    if(stock > 0) {
+        stock--;
+        document.getElementById("stock").innerText =
+            "Em estoque: " + stock;
+    }
+
+    closeModal();
+}
+
+/* ❌ CANCELAR */
+function cancelPurchase() {
+    clearInterval(timer);
+    closeModal();
+}
+
+/* MODAL */
+function openModal() {
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+/* 🔙 VOLTAR COM ANIMAÇÃO */
+function goBack(event) {
+    event.preventDefault();
+
+    playClick();
+
+    document.body.classList.add("page-exit");
+
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 350);
+}
+</script>
+
+</body>
+</html>

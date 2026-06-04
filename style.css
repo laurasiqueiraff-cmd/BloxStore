@@ -1,0 +1,584 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #3a3a3a;
+    overflow-x: hidden;
+
+    background: linear-gradient(-45deg,
+        #ffffff 0%,
+        #fff5f8 35%,
+        #ffe4ec 50%,
+        #ffd6e3 55%,
+        #ffffff 100%
+    );
+    background-size: 400% 400%;
+    animation: bgMove 14s ease infinite;
+}
+
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* overlay suave rosa */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at top,
+        rgba(255, 182, 193, 0.15) 0%,
+        rgba(255, 182, 193, 0.06) 45%,
+        rgba(255, 255, 255, 0.0) 100%
+    );
+    pointer-events: none;
+}
+
+/* ================= HEADER ================= */
+header {
+    text-align: center;
+    padding: 60px 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #ffd6e3;
+}
+
+header h1 {
+    font-size: 42px;
+    margin: 0;
+    color: #ff6f91;
+}
+
+header p {
+    opacity: 0.7;
+    margin-top: 10px;
+    color: #6b6b6b;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+    padding: 30px;
+}
+
+/* ================= TITULOS ================= */
+h2 {
+    margin: 10px 0 5px 0;
+    font-size: 20px;
+    border-left: 3px solid #ff8fb1;
+    padding-left: 10px;
+    color: #ff6f91;
+}
+
+/* ================= GRID ================= */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+}
+
+/* ================= CARD ================= */
+.card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #ffd6e3;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #ff8fb1;
+}
+
+/* brilho rosa */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 182, 193, 0.35),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: shine 2.4s infinite;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    0% { left: -120%; }
+    100% { left: 220%; }
+}
+
+/* imagem */
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* conteúdo */
+.card-content {
+    padding: 12px;
+}
+
+/* preço */
+.price {
+    color: #ff6f91;
+    font-weight: bold;
+}
+
+/* LINKS */
+a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* ================= LANG BOX ================= */
+.lang-box {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 999999;
+    background: #ffffff;
+    border: 1px solid #ffd6e3;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.lang-box button {
+    background: transparent;
+    border: 1px solid #ff8fb1;
+    color: #ff6f91;
+    padding: 6px 10px;
+    margin: 2px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.lang-box button:hover {
+    background: #ff8fb1;
+    color: white;
+}
+
+/* ================= SUPORTE ================= */
+.support {
+    margin-top: 60px;
+    padding: 30px;
+    background: #ffffff;
+    text-align: center;
+    border-top: 1px solid #ffd6e3;
+}
+
+.support p {
+    margin: 5px 0;
+    opacity: 0.8;
+}
+
+.support a {
+    color: #ff6f91;
+}
+
+/* ================= PRODUTO ================= */
+.small-header {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #ffd6e3;
+    background: #ffffff;
+}
+
+.product-page {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 30px;
+}
+
+.product-img {
+    width: 380px;
+    border-radius: 14px;
+    border: 1px solid #ffd6e3;
+}
+
+.product-right {
+    max-width: 420px;
+}
+
+.product-right h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+/* descrição */
+.desc {
+    opacity: 0.8;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* preço */
+.price {
+    font-size: 26px;
+    color: #ff6f91;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* botão */
+.buy-btn {
+    background: #ff8fb1;
+    border: none;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.buy-btn:hover {
+    background: #ff6f91;
+}
+
+.buy-btn:active {
+    transform: scale(0.96);
+}
+
+/* voltar */
+.back {
+    display: inline-block;
+    margin-top: 15px;
+    color: #ff6f91;
+    text-decoration: none;
+}
+
+.back:hover {
+    text-decoration: underline;
+}
+
+/* ================= MODAL ================= */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 182, 193, 0.25);
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+.modal-box {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    width: 320px;
+    text-align: center;
+    border: 1px solid #ffd6e3;
+}
+
+/* botão modal */
+.close-btn {
+    margin-top: 15px;
+    background: #ff8fb1;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background: #ff6f91;
+}
+
+/* ================= SERVIDORES ================= */
+.servers-marquee {
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.servers-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: scroll-left 18s linear infinite;
+}
+
+.server {
+    min-width: 180px;
+    background: #ffffff;
+    border: 1px solid #ffd6e3;
+    border-radius: 14px;
+    overflow: hidden;
+    text-align: center;
+    flex-shrink: 0;
+    transition: 0.2s;
+}
+
+.server:hover {
+    transform: scale(1.05);
+    border-color: #ff8fb1;
+}
+
+.server img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.server span {
+    display: block;
+    padding: 10px;
+    font-weight: bold;
+}
+
+/* animação */
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ================= SAÍDA PÁGINA ================= */
+body.page-exit {
+    animation: pageExit 0.4s ease forwards;
+}
+
+@keyframes pageExit {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.03);
+        filter: blur(2px);
+    }html {
+    color-scheme: light;
+}
+}.comment {
+  opacity: 0;
+  transform: translateX(40px);
+  animation: slideIn 0.4s ease forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}/* 🔐 MELHORIA VISUAL DO LOGIN (SEM MEXER NO HTML) */
+
+.modal-box {
+    border-radius: 16px;
+    padding: 25px;
+    background: white;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    animation: popIn 0.2s ease;
+}
+
+/* INPUTS MAIS BONITOS */
+.modal-box input {
+    width: 100%;
+    margin: 6px 0;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+/* FOCO MAIS BONITO */
+.modal-box input:focus {
+    border-color: #000;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+}
+
+/* BOTÕES MAIS ORGANIZADOS */
+.modal-box button {
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+/* EFEITO HOVER */
+.modal-box button:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+/* ERRO MAIS LIMPO */
+#loginError {
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+/* ANIMAÇÃO (caso não tenha) */
+@keyframes popIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+
+    overflow: hidden;
+    text-align: center;
+}
+
+/* SLIDER */
+.comments-slider {
+    overflow: hidden;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* TRACK */
+.comments-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: scroll 90s linear infinite; /* MAIS DEVAGAR */
+}
+
+/* CARD */
+.comment-card {
+    width: 260px;
+    background: #f7f7f7;
+    border-radius: 15px;
+    padding: 15px;
+    flex-shrink: 0;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* AVATAR PEQUENO */
+.comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* USER */
+.comment-user {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* TEXTO */
+.comment-card p {
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+/* ESTRELAS */
+.stars {
+    color: #ffb400;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+/* ANIMAÇÃO LOOP */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}.roblox-profile {
+    background: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid #ffd6e3;
+    border-radius: 16px;
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.profile-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #ff8fb1;
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff6f91;
+}
+
+.profile-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #ff8fb1;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+}header h1 {
+    font-size: 60px;
+    margin: 0;
+    font-weight: 900;
+
+    /* gradiente animado dentro da letra */
+    background: linear-gradient(
+        90deg,
+        #ff6f91,
+        #ffd1dc,
+        #ff8fb1,
+        #ffffff,
+        #ff6f91
+    );
+    background-size: 300% 100%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: shineText 4s linear infinite;
+
+    text-shadow: 0 0 10px rgba(255, 111, 145, 0.25);
+}
+
+/* movimento do brilho dentro do texto */
+@keyframes shineText {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 300% 50%;
+    }
+}

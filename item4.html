@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conta LVL Alto - Blox Store</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="small-header">
+    <h1>Blox Store</h1>
+</header>
+
+<div class="product-page">
+
+    <div class="product-left">
+        <img src="images/conta1.png" class="product-img">
+    </div>
+
+    <div class="product-right">
+
+        <h2>+ 200,000 - Blox Burg</h2>
+
+        <p class="desc">
+            Precisa de mais dinheiro no Bloxburg para construir a casa dos seus sonhos, comprar veículos ou decorar sua cidade? Aqui você encontra dinheiro para o Welcome to Bloxburg com entrega rápida e segura.
+• Certifique-se de informar corretamente seu nome de usuário no Roblox.
+        </p>
+
+        <p class="price">R$ 𝟱𝟬,𝟬𝟬 </p>
+
+        <p id="stock">Em estoque: 3</p>
+
+        <button class="buy-btn" id="buyBtn" onclick="buy()">Comprar agora</button>
+
+        <a href="index.html" class="back" onclick="goBack(event)">Voltar</a>
+
+    </div>
+
+</div>
+
+<!-- POPUP -->
+<div id="modal" class="modal">
+
+    <div class="modal-box">
+
+        <h2>Pedido em andamento</h2>
+
+        <p>Para prosseguir com a compra entre em contacto.
+        
+        Você tem 1 minuto caso queira cancelar ou o pedido será confirmado automaticamente.</p>
+
+        <p id="timer">Tempo restante: 60s</p>
+
+        <p>
+            WhatsApp:
+            <a href="https://wa.me/351928046558" target="_blank">
+                Abrir conversa
+            </a>
+        </p>
+
+        <p>
+            Discord:
+            <a href="https://discord.gg/hv7w2X6fGk" target="_blank">
+                Abrir ticket
+            </a>
+        </p>
+
+        <button onclick="cancelPurchase()" class="close-btn">
+            Cancelar pedido
+        </button>
+
+    </div>
+
+</div>
+
+<!-- 🔊 SOM -->
+<audio id="clickSound" src="https://www.myinstants.com/media/sounds/click-sound.mp3" preload="auto"></audio>
+
+<script>
+let stock = 3;
+let timer;
+let timeLeft = 60;
+
+/* 🔊 SOM */
+function playClick() {
+    const sound = document.getElementById("clickSound");
+    sound.currentTime = 0;
+    sound.play();
+}
+
+function buy() {
+    playClick();
+
+    const btn = document.getElementById("buyBtn");
+
+    if(stock <= 0) {
+        btn.innerText = "Esgotado";
+        btn.style.background = "#555";
+        return;
+    }
+
+    btn.innerText = "Processando...";
+    btn.disabled = true;
+
+    setTimeout(() => {
+        btn.innerText = "Comprar agora";
+        btn.disabled = false;
+
+        openModal();
+        startTimer();
+    }, 800);
+}
+
+/* ⏱️ TIMER DE 1 MINUTO */
+function startTimer() {
+    timeLeft = 60;
+    document.getElementById("timer").innerText = "Tempo restante: 60s";
+
+    timer = setInterval(() => {
+        timeLeft--;
+
+        document.getElementById("timer").innerText =
+            "Tempo restante: " + timeLeft + "s";
+
+        if(timeLeft <= 0) {
+            clearInterval(timer);
+            confirmPurchase();
+        }
+
+    }, 1000);
+}
+
+/* ✔️ COMPRA CONFIRMADA AUTOMATICAMENTE */
+function confirmPurchase() {
+    clearInterval(timer);
+
+    if(stock > 0) {
+        stock--;
+        document.getElementById("stock").innerText =
+            "Em estoque: " + stock;
+    }
+
+    closeModal();
+}
+
+/* ❌ CANCELAR */
+function cancelPurchase() {
+    clearInterval(timer);
+    closeModal();
+}
+
+/* MODAL */
+function openModal() {
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+/* 🔙 VOLTAR COM ANIMAÇÃO */
+function goBack(event) {
+    event.preventDefault();
+
+    playClick();
+
+    document.body.classList.add("page-exit");
+
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 350);
+}
+</script>
+
+</body>
+</html>
